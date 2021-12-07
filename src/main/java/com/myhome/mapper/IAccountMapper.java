@@ -1,10 +1,10 @@
 package com.myhome.mapper;
 
 import com.myhome.dto.AccountDTO;
-import com.myhome.entities.Account;
+import com.myhome.entity.Account;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(implementationName = "AccountMapper")
 public interface IAccountMapper {
 
 	AccountDTO toDTO(Account entity);

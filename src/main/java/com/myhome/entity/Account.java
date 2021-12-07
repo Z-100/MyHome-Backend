@@ -1,4 +1,4 @@
-package com.myhome.entities;
+package com.myhome.entity;
 
 import lombok.Data;
 
