@@ -2,6 +2,6 @@ package com.example.demo;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface StudentRepository extends CrudRepository<Account, Long> {
+public interface AccountRepository extends CrudRepository<Account, Long> {
 
 }

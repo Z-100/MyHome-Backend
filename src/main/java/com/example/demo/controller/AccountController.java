@@ -1,34 +1,31 @@
 package com.example.demo.controller;
 
 import com.example.demo.Account;
-import com.example.demo.StudentRepository;
+import com.example.demo.AccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class AccountController {
 
 
-	final StudentRepository sr;
+	final AccountRepository accountRepository;
 
-	public AccountController(StudentRepository sr) {
-		this.sr = sr;
+	public AccountController(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
 	}
 
 	@GetMapping("/getAcc")
-	public String helloWorld(@RequestHeader("token") String token) {
-		return token.equals("s") ? new Account().toString() : "No";
+	public Account helloWorld(@RequestHeader("token") String token) {
+		Account response = new Account(5L, "Hans", "Peter");
+		if (token.equals("s"))
+			return response; // ! Important note: Always return the dto / entity
+		return null;
 	}
 
 	@GetMapping("/students")
 	public Iterable<Account> getAllStudents() {
-		return sr.findAll();
-	}
-
-	@GetMapping("/students/{id}")
-	public Account getAllStudents(@RequestParam("id") Long id) {
-		return sr.findById(id).orElseThrow();
+		return accountRepository.findAll();
 	}
 }
