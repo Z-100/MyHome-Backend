@@ -6,9 +6,9 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.springframework.stereotype.Component;
 
-@Component
-@Mapper(implementationName = "AccountMapper")
-public abstract class IAccountMapper {
+@Mapper(implementationName = "AccountMapper",
+		componentModel = "spring")
+public abstract class AbstractAccountMapper {
 
 	abstract public AccountDTO toDTO(Account entity);
 
