@@ -1,7 +1,6 @@
 package com.myhome.api.components.account.entity;
 
 import lombok.Data;
-import lombok.Getter;
 
 import javax.persistence.*;
 
