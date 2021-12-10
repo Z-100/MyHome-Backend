@@ -1,4 +1,4 @@
-package com.myhome.entity;
+package com.myhome.api.components.account.entity;
 
 import lombok.Data;
 
@@ -15,6 +15,9 @@ public class Account {
 	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "name", nullable = false)
-	private String name;
+	@Column(name = "email", nullable = false)
+	private String email;
+
+	@Column(name = "password", nullable = false)
+	private String password;
 }

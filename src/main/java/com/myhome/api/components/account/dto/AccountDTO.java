@@ -1,4 +1,4 @@
-package com.myhome.dto;
+package com.myhome.api.components.account.dto;
 
 import lombok.Data;
 
@@ -6,5 +6,6 @@ import lombok.Data;
 public class AccountDTO {
 
 	private Long id;
-	private String name;
+
+	private String email;
 }
