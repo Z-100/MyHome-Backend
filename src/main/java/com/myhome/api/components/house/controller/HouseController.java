@@ -1,5 +1,6 @@
 package com.myhome.api.components.house.controller;
 
+import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.dto.HouseDTO;
 import com.myhome.api.components.house.entity.House;
 import com.myhome.api.components.house.repository.IHouseRepository;
@@ -11,29 +12,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HouseController {
 
-	private final IHouseRepository accountRepository;
+	private final IHouseRepository houseRepository;
+	private final IAccountRepository accountRepository;
 
 	private final AbstractHouseMapper houseMapper;
 
-	public HouseController(IHouseRepository accountRepository, AbstractHouseMapper houseMapper) {
+	public HouseController(IHouseRepository houseRepository, IAccountRepository accountRepository, AbstractHouseMapper houseMapper) {
+		this.houseRepository = houseRepository;
 		this.accountRepository = accountRepository;
 		this.houseMapper = houseMapper;
 	}
 
-	@GetMapping("/getAcc")
+	@GetMapping("/getHouse")
 	public HouseDTO helloWorld(@RequestHeader("token") String token) {
 
-		House house = accountRepository.findByName("enim.sed.nulla@yahoo.ca");
-
-		HouseDTO response = houseMapper.toDTO(house);
-
-		if (token.equals("s"))
-			return response;
+//		House house = houseRepository.findByAccount(accountRepository.findByEmail("enim.sed.nulla@yahoo.ca"));
+//
+//		HouseDTO response = houseMapper.toDTO(house);
+//
+//		if (token.equals("s"))
+//			return response;
 		return null;
-	}
-
-	@GetMapping("/students")
-	public Iterable<House> getAllStudents() {
-		return accountRepository.findAll();
 	}
 }

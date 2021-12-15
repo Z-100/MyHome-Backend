@@ -4,10 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "account")
+@Table(name = "house")
 @Entity
 @Data
 public class House {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
@@ -16,12 +17,8 @@ public class House {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "fk_accountId")
-	private Long fk_accountId;
-
-	public House(String name, Long fk_accountId) {
+	public House(String name) {
 		this.name = name;
-		this.fk_accountId = fk_accountId;
 	}
 
 	public House() {

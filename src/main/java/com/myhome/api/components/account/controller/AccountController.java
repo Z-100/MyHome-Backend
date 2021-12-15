@@ -23,7 +23,7 @@ public class AccountController {
 	@GetMapping("/getAcc")
 	public AccountDTO helloWorld(@RequestHeader("token") String token) {
 
-		Account account = accountRepository.findByEmail("enim.sed.nulla@yahoo.ca");
+		Account account = accountRepository.findByEmail("metus.in.lorem@icloud.couk");
 
 		AccountDTO response = accountMapper.toDTO(account);
 
