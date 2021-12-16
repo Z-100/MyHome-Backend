@@ -12,5 +12,5 @@ public class AccountDTO {
 
 	private String email;
 
-	private List<House> houseList;
+	private List<House> houses;
 }
