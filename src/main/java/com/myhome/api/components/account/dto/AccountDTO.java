@@ -1,9 +1,10 @@
 package com.myhome.api.components.account.dto;
 
 import com.myhome.api.components.house.entity.House;
+import com.myhome.api.components.member.entity.Member;
 import lombok.Data;
 
-import java.util.List;
+import java.util.Set;
 
 @Data
 public class AccountDTO {
@@ -12,5 +13,7 @@ public class AccountDTO {
 
 	private String email;
 
-	private List<House> houses;
+	private Set<House> houses;
+
+	private Set<Member> members;
 }

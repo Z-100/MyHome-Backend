@@ -1,10 +1,12 @@
 package com.myhome.api.components.account.entity;
 
 import com.myhome.api.components.house.entity.House;
+import com.myhome.api.components.member.entity.Member;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "account")
 @Entity
@@ -24,7 +26,11 @@ public class Account {
 
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "fk_accountId")
-	private List<House> houses;
+	private Set<House> houses;
+
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "fk_accountId")
+	private Set<Member> members;
 
 	public Account(String email, String password) {
 		this.email = email;
