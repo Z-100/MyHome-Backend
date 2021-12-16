@@ -21,15 +21,11 @@ public class AccountController {
 	}
 
 	@GetMapping("/getAcc")
-	public AccountDTO helloWorld(@RequestHeader("token") String token) {
+	public AccountDTO helloWorld(@RequestHeader("account") String token) {
 
-		Account account = accountRepository.findByEmail("metus.in.lorem@icloud.couk");
+		Account account = accountRepository.findByEmail(token);
 
-		AccountDTO response = accountMapper.toDTO(account);
-
-		if (token.equals("s"))
-			return response;
-		return null;
+		return accountMapper.toDTO(account);
 	}
 
 	@GetMapping("/students")
