@@ -4,7 +4,7 @@ import com.myhome.api.components.cleaning.dto.CleaningDTO;
 import com.myhome.api.components.cleaning.entity.Cleaning;
 import org.mapstruct.Mapper;
 
-@Mapper(implementationName = "AccountMapper",
+@Mapper(implementationName = "CleaningMapper",
 		componentModel = "spring")
 public abstract class AbstractCleaningMapper {
 
