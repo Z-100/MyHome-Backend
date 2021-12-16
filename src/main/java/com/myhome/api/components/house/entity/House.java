@@ -1,8 +1,10 @@
 package com.myhome.api.components.house.entity;
 
+import com.myhome.api.components.room.entity.Room;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "house")
 @Entity
@@ -16,6 +18,10 @@ public class House {
 
 	@Column(name = "name")
 	private String name;
+
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "fk_houseId")
+	private List<Room> rooms;
 
 	public House(String name) {
 		this.name = name;
