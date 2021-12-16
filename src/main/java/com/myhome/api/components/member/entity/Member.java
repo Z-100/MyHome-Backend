@@ -1,8 +1,10 @@
 package com.myhome.api.components.member.entity;
 
+import com.myhome.api.components.meal.entity.Meal;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "member")
 @Entity
@@ -19,4 +21,8 @@ public class Member {
 
 	@Column(name = "icon")
 	private Integer icon;
+
+	@OneToMany(cascade = {CascadeType.ALL})
+	@JoinColumn(name = "fk_memberId")
+	private Set<Meal> meals;
 }
