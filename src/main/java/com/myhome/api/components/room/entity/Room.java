@@ -1,8 +1,12 @@
 package com.myhome.api.components.room.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.myhome.api.components.cleaning.entity.Cleaning;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Table(name = "room")
 @Entity
@@ -19,4 +23,11 @@ public class Room {
 
 	@Column(name = "icon")
 	private Integer icon;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "rooms_to_be_cleaned",
+			joinColumns = @JoinColumn(name = "fk_roomId"),
+			inverseJoinColumns = @JoinColumn(name = "fk_cleaningId"))
+	private Set<Cleaning> cleanings;
 }
