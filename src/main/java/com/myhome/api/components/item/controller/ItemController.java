@@ -1,32 +1,32 @@
-package com.myhome.api.components.room.controller;
+package com.myhome.api.components.item.controller;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.dto.HouseDTO;
 import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.house.services.mapper.AbstractHouseMapper;
-import com.myhome.api.components.room.repository.IItemRepository;
+import com.myhome.api.components.item.repository.IRoomRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class RoomController {
+public class ItemController {
 
 	private final IHouseRepository houseRepository;
 	private final IAccountRepository accountRepository;
-	private final IItemRepository roomRepository;
+	private final IRoomRepository roomRepository;
 
 	private final AbstractHouseMapper houseMapper;
 
-	public RoomController(IHouseRepository houseRepository, IAccountRepository accountRepository,
-			IItemRepository roomRepository, AbstractHouseMapper houseMapper) {
+	public ItemController(IHouseRepository houseRepository, IAccountRepository accountRepository,
+			IRoomRepository roomRepository, AbstractHouseMapper houseMapper) {
 		this.houseRepository = houseRepository;
 		this.accountRepository = accountRepository;
 		this.roomRepository = roomRepository;
 		this.houseMapper = houseMapper;
 	}
 
-	@GetMapping("/getRoom")
+	@GetMapping("/getItem")
 	public HouseDTO helloWorld(@RequestHeader("token") String token) {
 
 //		House house = houseRepository.findByAccount(accountRepository.findByEmail("enim.sed.nulla@yahoo.ca"));
