@@ -1,6 +1,7 @@
 package com.myhome.service.generate;
 
 import com.myhome.service.stupidity.TokenGenerationHelperService;
+import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import java.util.UUID;
  * @author z-100
  * Service used to create a 37c long token, up on account registration
  */
+@Component
 public class TokenGenerationService {
 
 	/**
