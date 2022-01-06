@@ -5,8 +5,9 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
-import com.myhome.service.generate.UserRegistrationService;
-import com.myhome.service.validation.AccountPasswordValidationService;
+import com.myhome.service.validation.PasswordValidationService;
+import com.myhome.service.validation.TokenValidationService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,17 +19,19 @@ public class AccountController {
 
 	private final AbstractAccountMapper accountMapper;
 
-	private final AccountPasswordValidationService validationService;
+	private final PasswordValidationService passwordValidation;
+
+	private final TokenValidationService tokenValidation;
 
 	private final UserRegistrationService userRegistrationService;
 
 	public AccountController(IAccountRepository accountRepository, AbstractAccountMapper accountMapper,
-			AccountPasswordValidationService validationService, UserRegistrationService userRegistrationService) {
+			PasswordValidationService passwordValidation, TokenValidationService tokenValidation) {
 
 		this.accountRepository = accountRepository;
 		this.accountMapper = accountMapper;
-		this.validationService = validationService;
-		this.userRegistrationService = userRegistrationService;
+		this.passwordValidation = passwordValidation;
+		this.tokenValidation = tokenValidation;
 	}
 
 	@GetMapping("/getAcc")
@@ -46,9 +49,10 @@ public class AccountController {
 			@RequestHeader("token") String token) {
 
 		try {
-			if (token.equals("temp")) {
-				validationService.setRepository(accountRepository);
-				return validationService.validate(email, password);
+			if (tokenValidation.validate(email, token)) {
+				passwordValidation.setRepository(accountRepository);
+
+				return passwordValidation.validate(email, password);
 			} else {
 				throw new InvalidUserInformationException("Invalid token");
 			}
