@@ -13,10 +13,10 @@ import java.util.Objects;
 public class ItemsInRoomId implements Serializable {
 
 	@Column(name ="fk_roomId")
-	private Long roomId;
+	private Long fk_roomId;
 
 	@Column(name ="fk_itemId")
-	private Long itemId;
+	private Long fk_itemId;
 
 	@Override
 	public boolean equals(Object o) {
@@ -25,11 +25,11 @@ public class ItemsInRoomId implements Serializable {
 		if (o == null || getClass() != o.getClass())
 			return false;
 		ItemsInRoomId that = (ItemsInRoomId) o;
-		return roomId.equals(that.roomId) && itemId.equals(that.itemId);
+		return fk_roomId.equals(that.fk_roomId) && fk_itemId.equals(that.fk_itemId);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(roomId, itemId);
+		return Objects.hash(fk_roomId, fk_itemId);
 	}
 }

@@ -21,11 +21,11 @@ public class ItemsInRoom {
 //	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("roomId")
+	@MapsId("fk_roomId")
 	private Room room;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@MapsId("itemId")
+	@MapsId("fk_itemId")
 	private Item item;
 
 	@Column(name = "amount")
