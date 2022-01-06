@@ -4,6 +4,7 @@ import com.myhome.api.components.account.entity.Account;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.stream.Stream;
 
 @Repository
@@ -18,9 +19,9 @@ public interface IAccountRepository extends CrudRepository<Account, Long> {
 	Account findByEmail(String email);
 
 	/**
-	 * List all accounts in stream
+	 * List all accounts as Iterable
 	 *
-	 * @return all accounts in stream
+	 * @return all accounts in Iterable
 	 */
-	Stream<Account> stream();
+	Iterable<Account> findAll();
 }

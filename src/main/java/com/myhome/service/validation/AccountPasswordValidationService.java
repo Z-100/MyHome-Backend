@@ -6,21 +6,27 @@ import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.api.components.account.services.mapper.AccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  * @author z-100
  * Class used to validate a password
  */
+@Data
 public class AccountPasswordValidationService {
 
-	private final IAccountRepository repository;
+	private IAccountRepository repository;
 
-	private final AbstractAccountMapper mapper;
+	private AbstractAccountMapper mapper;
 
 	public AccountPasswordValidationService(IAccountRepository repository) {
 		this.repository = repository;
@@ -32,17 +38,21 @@ public class AccountPasswordValidationService {
 	 *
 	 * @param email input of the users email
 	 * @param password input of the users password
-	 *
 	 * @return the matched account as a DTO
 	 */
 	public AccountDTO validate(String email, String password) throws InvalidUserInformationException {
 
-		List<Account> collect = repository.stream()
+		List<Account> collect;
+
+		try (Stream<Account> result = StreamSupport
+				.stream(repository.findAll().spliterator(), false)) {
+
+			collect = result
 				.filter(acc -> email.equals(acc.getEmail()))
 				.filter(acc -> password.equals(acc.getPassword()))
 				.collect(Collectors.toList());
+		}
 
-		return collect.size() > 0 ?
-				mapper.toDTO(collect.get(0)) : null;
+		return collect.size() > 0 ? mapper.toDTO(collect.get(0)) : null;
 	}
 }
