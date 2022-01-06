@@ -24,13 +24,13 @@ import java.util.stream.StreamSupport;
  */
 @Data
 @Component
-public class AccountPasswordValidationService {
+public class PasswordValidationService {
 
 	private IAccountRepository repository;
 
 	private AbstractAccountMapper mapper;
 
-	public AccountPasswordValidationService(IAccountRepository repository) {
+	public PasswordValidationService(IAccountRepository repository) {
 		this.repository = repository;
 		this.mapper = new AccountMapper();
 	}
