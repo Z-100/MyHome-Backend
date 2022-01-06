@@ -24,6 +24,9 @@ public class Account {
 	@Column(name = "password")
 	private String password;
 
+	@Column(name = "token")
+	private String token;
+
 	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "fk_accountId")
 	private Set<House> houses;
