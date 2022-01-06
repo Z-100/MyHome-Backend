@@ -5,6 +5,7 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
+import com.myhome.service.generate.UserRegistrationService;
 import com.myhome.service.validation.PasswordValidationService;
 import com.myhome.service.validation.TokenValidationService;
 
@@ -26,12 +27,14 @@ public class AccountController {
 	private final UserRegistrationService userRegistrationService;
 
 	public AccountController(IAccountRepository accountRepository, AbstractAccountMapper accountMapper,
-			PasswordValidationService passwordValidation, TokenValidationService tokenValidation) {
+			PasswordValidationService passwordValidation, TokenValidationService tokenValidation,
+			UserRegistrationService userRegistrationService) {
 
 		this.accountRepository = accountRepository;
 		this.accountMapper = accountMapper;
 		this.passwordValidation = passwordValidation;
 		this.tokenValidation = tokenValidation;
+		this.userRegistrationService = userRegistrationService;
 	}
 
 	@GetMapping("/getAcc")
