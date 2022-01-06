@@ -9,6 +9,7 @@ import com.myhome.other.exception.InvalidUserInformationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Set;
@@ -22,6 +23,7 @@ import java.util.stream.StreamSupport;
  * Class used to validate a password
  */
 @Data
+@Component
 public class AccountPasswordValidationService {
 
 	private IAccountRepository repository;
