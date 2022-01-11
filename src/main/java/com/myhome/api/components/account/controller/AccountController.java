@@ -69,10 +69,11 @@ public class AccountController {
 	public String register(
 			@RequestHeader("email") String email,
 			@RequestHeader("password") String password,
+			@RequestHeader("newHouseName") String newHouseName,
 			@RequestHeader("token") String token) {
 
 		if (token.equals("69"))
-			return userRegistrationService.registerNewUser(email, password);
+			return userRegistrationService.registerNewUser(email, password, newHouseName);
 		else
 			return null;
 	}
