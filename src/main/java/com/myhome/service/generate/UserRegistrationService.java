@@ -3,6 +3,7 @@ package com.myhome.service.generate;
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.entity.House;
+import com.myhome.api.components.member.entity.Member;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,19 +37,25 @@ public class UserRegistrationService {
 	 * @param password The given password the user has created
 	 * @return On success: The token used by the account
 	 */
-	public String registerNewUser(String email, String password, String newHouseName) {
+	public String registerNewUser(String email, String password, String newHouseName, String defaultMemberName) {
 
 		if (!emailAlreadyRegistered(email)) {
 			Account newAccount = new Account();
 
 			House newHouse = new House();
 
+			Member newMember = new Member();
+
 			newHouse.setName(newHouseName);
+
+			newMember.setName(defaultMemberName);
+			newMember.setIcon(0);
 
 			newAccount.setEmail(email);
 			newAccount.setPassword(password);
 			newAccount.setToken(this.token);
 			newAccount.setHouses(Set.of(newHouse));
+			newAccount.setMembers(Set.of(newMember));
 
 			if (createNewTransaction(newAccount))
 				return this.token;
