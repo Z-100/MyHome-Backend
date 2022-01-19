@@ -1,9 +1,11 @@
 package com.myhome.api.components.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.meal.entity.Meal;
+import com.myhome.api.components.rating.entity.Rating;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -36,4 +38,11 @@ public class Member {
 			mappedBy = "fkMemberId")
 	@JsonBackReference
 	private Set<Meal> meals;
+
+	@OneToMany(
+			cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "fkMemberId")
+	@JsonBackReference
+	private Set<Rating> ratings;
 }
