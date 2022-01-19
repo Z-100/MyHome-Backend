@@ -4,9 +4,9 @@ import com.myhome.api.components.recipe.dto.RecipeDTO;
 import com.myhome.api.components.recipe.entity.Recipe;
 import org.mapstruct.Mapper;
 
-@Mapper(implementationName = "AccountMapper",
+@Mapper(implementationName = "RecipeMapper",
 		componentModel = "spring")
-public abstract class AbstractAccountMapper {
+public abstract class AbstractRecipeMapper {
 
 	abstract RecipeDTO toDTO(Recipe entity);
 
