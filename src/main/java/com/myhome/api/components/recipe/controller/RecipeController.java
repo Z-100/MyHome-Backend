@@ -44,11 +44,11 @@ public class RecipeController {
 			if (tokenValidation.validate(email, token)) {
 				List<RecipeDTO> recipeDTOs = new ArrayList<>();
 
-				recipeRepository.findRecipesByFkHouseId(
-						houseRepository.findHouseByFkAccountId(
-								accountRepository.findByEmail(email).getId()))
-						.forEach(recipe -> recipeDTOs
-								.add(recipeMapper.toDTO(recipe)));
+				houseRepository.findHouseByFkAccountId(
+						accountRepository.findByEmail(email)
+								.getId()).getRecipes().forEach(recipe -> {
+									recipeDTOs.add(recipeMapper.toDTO(recipe));
+								});
 
 				return recipeDTOs;
 			}

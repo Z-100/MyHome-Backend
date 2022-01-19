@@ -7,13 +7,16 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.meal.entity.Meal;
 import com.myhome.api.components.rating.entity.Rating;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Table(name = "member")
 @Entity
-@Data
+@Getter
+@Setter
 public class Member {
 
 	@Id
