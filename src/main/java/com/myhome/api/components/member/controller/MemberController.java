@@ -38,7 +38,7 @@ public class MemberController {
 	 * @return Iterable of all members belonging to said account
 	 */
 	@GetMapping("/get-member")
-	public Iterable<MemberDTO> helloWorld(
+	public Iterable<MemberDTO> getSpecificMembersFromAccount(
 			@RequestHeader("email") String email,
 			@RequestHeader("token") String token) {
 
