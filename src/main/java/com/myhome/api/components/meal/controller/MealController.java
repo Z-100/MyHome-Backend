@@ -1,40 +1,59 @@
 package com.myhome.api.components.meal.controller;
 
-import com.myhome.api.components.account.repository.IAccountRepository;
-import com.myhome.api.components.house.dto.HouseDTO;
-import com.myhome.api.components.house.repository.IHouseRepository;
-import com.myhome.api.components.house.services.mapper.AbstractHouseMapper;
+import com.myhome.api.components.meal.dto.MealDTO;
+import com.myhome.api.components.meal.mapper.AbstractMealMapper;
 import com.myhome.api.components.meal.repository.IMealRepository;
+import com.myhome.api.components.member.dto.MemberDTO;
+import com.myhome.api.components.member.repository.IMemberRepository;
+import com.myhome.api.components.member.services.mapper.AbstractMemberMapper;
+import com.myhome.service.validation.TokenValidationService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
+@RequestMapping("/meal")
+@AllArgsConstructor
 public class MealController {
 
-	private final IHouseRepository houseRepository;
-	private final IAccountRepository accountRepository;
-	private final IMealRepository roomRepository;
+	private final IMealRepository mealRepository;
+	private final IMemberRepository memberRepository;
+	private final AbstractMealMapper mealMapper;
 
-	private final AbstractHouseMapper houseMapper;
+	private final TokenValidationService tokenValidation;
 
-	public MealController(IHouseRepository houseRepository, IAccountRepository accountRepository,
-			IMealRepository roomRepository, AbstractHouseMapper houseMapper) {
-		this.houseRepository = houseRepository;
-		this.accountRepository = accountRepository;
-		this.roomRepository = roomRepository;
-		this.houseMapper = houseMapper;
-	}
+	/**
+	 * Method used to get all meals from a specific member
+	 *
+	 * @param memberId The id of the member
+	 * @param email The accounts email (validation and account)
+	 * @param token The accounts specific token to validate the request
+	 * @return Iterable of all meals belonging to said meal
+	 */
+	@GetMapping("/get-meal")
+	public Iterable<MealDTO> helloWorld(
+			@RequestHeader("memberid") String memberId,
+			@RequestHeader("email") String email,
+			@RequestHeader("token") String token) {
 
-	@GetMapping("/getMeal")
-	public HouseDTO helloWorld(@RequestHeader("token") String token) {
+		if (tokenValidation.validate(email, token)) {
+			List<MealDTO> mealDTOs = new ArrayList<>();
 
-//		House house = houseRepository.findByAccount(accountRepository.findByEmail("enim.sed.nulla@yahoo.ca"));
-//
-//		HouseDTO response = houseMapper.toDTO(house);
-//
-//		if (token.equals("s"))
-//			return response;
+			Long memberIdL = Long.parseLong(memberId);
+
+			mealRepository.findByFkMemberId(memberRepository.findById(memberIdL).get())
+					.forEach(meal -> {
+						mealDTOs.add(
+								mealMapper.toDTO(meal));
+					});
+
+			return mealDTOs;
+		}
 		return null;
 	}
 }

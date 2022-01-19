@@ -1,5 +1,6 @@
 package com.myhome.api.components.member.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.meal.entity.Meal;
@@ -29,7 +30,10 @@ public class Member {
 	@JsonManagedReference // ? Work around for StackOverflow
 	private Account fkAccountId;
 
-	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "fk_memberId")
+	@OneToMany(
+			cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "fkMemberId")
+	@JsonBackReference
 	private Set<Meal> meals;
 }

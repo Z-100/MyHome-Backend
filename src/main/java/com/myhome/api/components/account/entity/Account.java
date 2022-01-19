@@ -38,12 +38,4 @@ public class Account {
 			mappedBy = "fkAccountId")
 	@JsonBackReference
 	private Set<Member> members;
-
-	public Account(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
-
-	public Account() {
-	}
 }

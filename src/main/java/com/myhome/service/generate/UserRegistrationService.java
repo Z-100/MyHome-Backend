@@ -54,8 +54,8 @@ public class UserRegistrationService {
 			newAccount.setEmail(email);
 			newAccount.setPassword(password);
 			newAccount.setToken(this.token);
-			newAccount.setHouses(Set.of(newHouse));
-			newAccount.setMembers(Set.of(newMember));
+//			newAccount.setHouses(Set.of(newHouse));
+//			newAccount.setMembers(Set.of(newMember));
 
 			if (createNewTransaction(newAccount))
 				return this.token;
