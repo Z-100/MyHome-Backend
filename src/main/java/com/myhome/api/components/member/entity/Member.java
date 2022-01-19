@@ -29,7 +29,7 @@ public class Member {
 
 	@ManyToOne
 	@JoinColumn(name = "fkAccountId", nullable = false)
-	@JsonManagedReference // ? Work around for StackOverflow
+	@JsonManagedReference
 	private Account fkAccountId;
 
 	@OneToMany(

@@ -1,5 +1,7 @@
 package com.myhome.api.components.recipe.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.house.entity.House;
 import com.myhome.api.components.member.entity.Member;
 import lombok.Data;
@@ -22,4 +24,9 @@ public class Recipe {
 
 	@Column(name = "forAmountOfPeople")
 	private String forAmountOfPeople;
+
+	@ManyToOne
+	@JoinColumn(name = "fkHouseId", nullable = false)
+	@JsonManagedReference
+	private Account fkHouseId;
 }

@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 		componentModel = "spring")
 public abstract class AbstractRecipeMapper {
 
-	abstract RecipeDTO toDTO(Recipe entity);
+	public abstract RecipeDTO toDTO(Recipe entity);
 
-	abstract Recipe toEntity(RecipeDTO dto);
+	public abstract Recipe toEntity(RecipeDTO dto);
 }

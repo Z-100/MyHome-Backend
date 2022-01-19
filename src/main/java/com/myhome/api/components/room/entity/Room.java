@@ -2,6 +2,8 @@ package com.myhome.api.components.room.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.cleaning.entity.Cleaning;
 import lombok.Data;
 
@@ -23,6 +25,11 @@ public class Room {
 
 	@Column(name = "icon")
 	private Integer icon;
+
+	@ManyToOne
+	@JoinColumn(name = "fkHouseId", nullable = false)
+	@JsonManagedReference
+	private Account fkHouseId;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(
