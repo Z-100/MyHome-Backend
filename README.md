@@ -35,9 +35,9 @@ All around, MyHome is a school project consisting of two standalone project:
     * /get-recipes (Responds with all the recipes belonging to a house (hold))
       * Required headers:
         * email, token
-    * /get-recipe?rating=* (Responds with all the recipes with a rating above *)
+    * /get-recipe (Responds with all the recipes with a rating above *)
       * Required headers:
-        * email, token
+        * getRating (The rating to search for), email, token
   * /room (Responds with all rooms belonging to a house (hold))
     * Required headers:
       * email, token
