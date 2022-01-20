@@ -1,8 +1,6 @@
 package com.myhome.api.components.item.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -12,8 +10,8 @@ import java.util.Set;
 
 @Table(name = "item")
 @Entity
-@Data
-@EqualsAndHashCode(of = "id")
+@Setter
+@Getter
 public class Item {
 
 	@Id
@@ -23,9 +21,4 @@ public class Item {
 
 	@Column(name = "name")
 	private String name;
-
-	@OneToMany(mappedBy = "item", cascade = {CascadeType.ALL})
-//	@EqualsAndHashCode.Exclude
-	@ToString.Exclude
-	private Set<ItemsInRoom> itemsInRoom;
 }
