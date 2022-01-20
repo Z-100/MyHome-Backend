@@ -25,8 +25,14 @@ class IAccountRepositoryTest {
 		for (Account acc : accounts)
 			countBefore++;
 
-		Account acc1 = new Account("hans", "peter");
-		Account acc2 = new Account("ueli", "berset");
+		Account acc1 = new Account();
+		acc1.setEmail("hans");
+		acc1.setPassword("peter");
+
+		Account acc2 = new Account();
+		acc2.setEmail("ueli");
+		acc2.setPassword("berset");
+
 		assertNull(acc1.getId());
 		assertNull(acc2.getId());//null before save
 		this.accountRepository.save(acc1);

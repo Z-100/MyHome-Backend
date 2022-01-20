@@ -11,24 +11,12 @@ import org.mapstruct.MappingTarget;
 		componentModel = "spring")
 public abstract class AbstractAccountMapper {
 
-	@Mapping(target = "houses", ignore = true)
 	@Mapping(target = "members", ignore = true)
 	abstract public AccountDTO toDTO(Account entity);
 
 	@Mapping(target = "password", ignore = true)
-	@Mapping(target = "houses", ignore = true)
 	@Mapping(target = "members", ignore = true)
 	abstract public Account toEntity(AccountDTO dto);
-
-	@AfterMapping
-	void setHouseToDto(@MappingTarget AccountDTO dto, Account entity) {
-		dto.setHouses(entity.getHouses());
-	}
-
-	@AfterMapping
-	void setHouseToEntity(@MappingTarget Account entity, AccountDTO dto) {
-		entity.setHouses(dto.getHouses());
-	}
 
 	@AfterMapping
 	void setMemberToDto(@MappingTarget AccountDTO dto, Account entity) {
