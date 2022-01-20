@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IRoomRepository extends CrudRepository<Room, Long> {
+public interface IItemRepository extends CrudRepository<Room, Long> {
 //	House findByAccount(Account account);
 }

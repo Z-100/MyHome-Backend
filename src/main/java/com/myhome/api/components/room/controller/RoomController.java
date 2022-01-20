@@ -4,6 +4,9 @@ import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.dto.HouseDTO;
 import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.house.services.mapper.AbstractHouseMapper;
+
+import com.myhome.api.components.room.repository.IItemRepository;
+
 import com.myhome.api.components.room.dto.RoomDTO;
 import com.myhome.api.components.room.entity.Room;
 import com.myhome.api.components.room.repository.IRoomRepository;
@@ -28,6 +31,7 @@ public class RoomController {
 
 	private final IHouseRepository houseRepository;
 	private final IAccountRepository accountRepository;
+	private final IItemRepository roomRepository;
 
 	private final AbstractRoomMapper roomMapper;
 
