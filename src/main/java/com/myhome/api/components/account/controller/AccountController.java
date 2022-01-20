@@ -9,33 +9,23 @@ import com.myhome.service.generate.UserRegistrationService;
 import com.myhome.service.validation.PasswordValidationService;
 import com.myhome.service.validation.TokenValidationService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/account")
+@AllArgsConstructor
 public class AccountController {
 
 	private final IAccountRepository accountRepository;
-
 	private final AbstractAccountMapper accountMapper;
 
 	private final PasswordValidationService passwordValidation;
-
 	private final TokenValidationService tokenValidation;
-
 	private final UserRegistrationService userRegistrationService;
-
-	public AccountController(IAccountRepository accountRepository, AbstractAccountMapper accountMapper,
-			PasswordValidationService passwordValidation, TokenValidationService tokenValidation,
-			UserRegistrationService userRegistrationService) {
-
-		this.accountRepository = accountRepository;
-		this.accountMapper = accountMapper;
-		this.passwordValidation = passwordValidation;
-		this.tokenValidation = tokenValidation;
-		this.userRegistrationService = userRegistrationService;
-	}
 
 	@GetMapping("/getAcc")
 	public Account helloWorld(@RequestHeader("account") String token) {

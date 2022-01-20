@@ -26,8 +26,10 @@ public class House {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "fkAccountId")
-	private Integer fkAccountId;
+	@ManyToOne
+	@JoinColumn(name = "fkAccountId", nullable = false)
+	@JsonManagedReference
+	private Account fkAccountId;
 
 	@OneToOne(mappedBy = "fkHouseId")
 	@JsonManagedReference

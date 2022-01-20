@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -54,8 +55,8 @@ public class UserRegistrationService {
 			newAccount.setEmail(email);
 			newAccount.setPassword(password);
 			newAccount.setToken(this.token);
-//			newAccount.setHouses(Set.of(newHouse));
-//			newAccount.setMembers(Set.of(newMember));
+			newAccount.setHouses(List.of(newHouse));
+			newAccount.setMembers(Set.of(newMember));
 
 			if (createNewTransaction(newAccount))
 				return this.token;

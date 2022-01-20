@@ -11,30 +11,4 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CleaningController {
-
-	private final IHouseRepository houseRepository;
-	private final IAccountRepository accountRepository;
-	private final ICleaningRepository roomRepository;
-
-	private final AbstractHouseMapper houseMapper;
-
-	public CleaningController(IHouseRepository houseRepository, IAccountRepository accountRepository,
-			ICleaningRepository roomRepository, AbstractHouseMapper houseMapper) {
-		this.houseRepository = houseRepository;
-		this.accountRepository = accountRepository;
-		this.roomRepository = roomRepository;
-		this.houseMapper = houseMapper;
-	}
-
-	@GetMapping("/getCleaning")
-	public HouseDTO helloWorld(@RequestHeader("token") String token) {
-
-//		House house = houseRepository.findByAccount(accountRepository.findByEmail("enim.sed.nulla@yahoo.ca"));
-//
-//		HouseDTO response = houseMapper.toDTO(house);
-//
-//		if (token.equals("s"))
-//			return response;
-		return null;
-	}
 }
