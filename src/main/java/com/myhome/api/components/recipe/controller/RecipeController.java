@@ -2,9 +2,7 @@ package com.myhome.api.components.recipe.controller;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.repository.IHouseRepository;
-import com.myhome.api.components.member.dto.MemberDTO;
 import com.myhome.api.components.member.repository.IMemberRepository;
-import com.myhome.api.components.member.services.mapper.AbstractMemberMapper;
 import com.myhome.api.components.rating.repository.IRatingRepository;
 import com.myhome.api.components.recipe.dto.RecipeDTO;
 import com.myhome.api.components.recipe.mapper.AbstractRecipeMapper;
@@ -15,7 +13,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author z-100
+ * Class used to controll the datahandling of the recipe
+ */
 @RestController
 @RequestMapping("/recipe")
 @AllArgsConstructor
@@ -25,6 +28,7 @@ public class RecipeController {
 	private final IHouseRepository houseRepository;
 	private final IAccountRepository accountRepository;
 	private final IRatingRepository ratingRepository;
+	private final IMemberRepository memberRepository;
 	private final AbstractRecipeMapper recipeMapper;
 
 	private final TokenValidationService tokenValidation;
@@ -37,7 +41,7 @@ public class RecipeController {
 	 * @return Iterable of all members belonging to said account
 	 */
 	@GetMapping("/get-recipes")
-	public List<RecipeDTO> getSpecificRecipes(
+	public List<RecipeDTO> getAllRecipes(
 			@RequestHeader("email") String email,
 			@RequestHeader("token") String token) {
 
@@ -46,17 +50,45 @@ public class RecipeController {
 
 				houseRepository.findHouseByFkAccountId(
 						accountRepository.findByEmail(email)
-								.getId()).getRecipes().forEach(recipe -> {
-									recipeDTOs.add(recipeMapper.toDTO(recipe));
-								});
+								.getId()).getRecipes().forEach(recipe ->
+						recipeDTOs.add(recipeMapper.toDTO(recipe)));
 
 				return recipeDTOs;
 			}
 			return null;
 	}
 
-	@GetMapping("/get-recipe{rating}")
-	public List<RecipeDTO> getRecipeWithRating(@PathVariable String rating) {
+	/**
+	 * Filter for recipes with a rating above <i>getRating<i/>
+	 *
+	 * @param getRating The rating (1-5)
+	 * @param email The email belonging to an account
+	 * @param token The token used for validation
+	 * @return A List with all recipes fulfilling the rating-filter
+	 */
+	@GetMapping("/get-recipe")
+	public List<RecipeDTO> getRecipeWithRating(
+			@RequestHeader("get-rating") String getRating,
+			@RequestHeader("email") String email,
+			@RequestHeader("token") String token) {
+
+		if (tokenValidation.validate(email, token)) {
+			AtomicInteger atomicRating = new AtomicInteger();
+			atomicRating.set(Integer.parseInt(getRating));
+
+			List<RecipeDTO> recipeDTOs = new ArrayList<>();
+
+			memberRepository.findByFkAccountId(accountRepository.findByEmail(email)).forEach(member -> {
+				ratingRepository.findByFkMemberId(member).forEach(rating -> {
+					if (rating.getRating() >= atomicRating.get()) {
+						recipeDTOs.add(recipeMapper.toDTO(
+								recipeRepository.findRecipeById(
+										rating.getFkRecipeId().getId())));
+					}
+				});
+			});
+			return recipeDTOs;
+		}
 		return null;
 	}
 }

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface IRecipeRepository extends CrudRepository<Recipe, Long> {
 
 	Iterable<Recipe> findRecipesByFkHouseId(House house);
+
+	Recipe findRecipeById(Long id);
 }
