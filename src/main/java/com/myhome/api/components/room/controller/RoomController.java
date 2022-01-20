@@ -4,37 +4,56 @@ import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.dto.HouseDTO;
 import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.house.services.mapper.AbstractHouseMapper;
+import com.myhome.api.components.room.dto.RoomDTO;
+import com.myhome.api.components.room.entity.Room;
 import com.myhome.api.components.room.repository.IRoomRepository;
+import com.myhome.api.components.room.services.mapper.AbstractRoomMapper;
+import com.myhome.service.validation.TokenValidationService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author z-100
+ */
 @RestController
+@RequestMapping("/room")
+@AllArgsConstructor
 public class RoomController {
 
 	private final IHouseRepository houseRepository;
 	private final IAccountRepository accountRepository;
-	private final IRoomRepository roomRepository;
 
-	private final AbstractHouseMapper houseMapper;
+	private final AbstractRoomMapper roomMapper;
 
-	public RoomController(IHouseRepository houseRepository, IAccountRepository accountRepository,
-			IRoomRepository roomRepository, AbstractHouseMapper houseMapper) {
-		this.houseRepository = houseRepository;
-		this.accountRepository = accountRepository;
-		this.roomRepository = roomRepository;
-		this.houseMapper = houseMapper;
-	}
+	private final TokenValidationService tokenValidation;
 
-	@GetMapping("/getRoom")
-	public HouseDTO helloWorld(@RequestHeader("token") String token) {
+	/**
+	 * Method used to gather all rooms belonging to an account
+	 *
+	 * @param email The accounts email
+	 * @param token The accounts validator token
+	 * @return All rooms belonging to an account
+	 */
+	@GetMapping("/get-all-rooms")
+	public List<RoomDTO> getAllRooms(
+			@RequestHeader("email") String email,
+			@RequestHeader("token") String token) {
 
-//		House house = houseRepository.findByAccount(accountRepository.findByEmail("enim.sed.nulla@yahoo.ca"));
-//
-//		HouseDTO response = houseMapper.toDTO(house);
-//
-//		if (token.equals("s"))
-//			return response;
+		if (tokenValidation.validate(email, token)) {
+			List<RoomDTO> rooms = new ArrayList<>();
+
+			houseRepository.findHouseByFkAccountId(
+					accountRepository.findByEmail(email).getId()).getRooms()
+					.forEach(room -> rooms.add(roomMapper.toDTO(room)));
+
+			return rooms;
+		}
 		return null;
 	}
 }
