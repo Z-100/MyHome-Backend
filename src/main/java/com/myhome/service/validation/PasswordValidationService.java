@@ -42,7 +42,7 @@ public class PasswordValidationService {
 	 * @param password input of the users password
 	 * @return the matched account as a DTO
 	 */
-	public AccountDTO validate(String email, String password) throws InvalidUserInformationException {
+	public String validate(String email, String password) throws InvalidUserInformationException {
 
 		List<Account> collect;
 
@@ -55,6 +55,6 @@ public class PasswordValidationService {
 				.collect(Collectors.toList());
 		}
 
-		return collect.size() > 0 ? mapper.toDTO(collect.get(0)) : null;
+		return collect.size() > 0 ? repository.findByEmail(email).getToken() : null;
 	}
 }

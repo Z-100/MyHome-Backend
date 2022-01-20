@@ -46,7 +46,7 @@ public class AccountController {
 	}
 
 	@GetMapping("/login")
-	public AccountDTO login(
+	public String login(
 			@RequestHeader("email") String email,
 			@RequestHeader("password") String password,
 			@RequestHeader("token") String token) {
