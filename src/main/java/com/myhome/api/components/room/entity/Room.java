@@ -35,7 +35,7 @@ public class Room {
 	private Account fkHouseId;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "rooms_to_be_cleaned",
+	@JoinTable(name = "roomstobecleaned",
 			joinColumns = @JoinColumn(name = "fk_roomId"),
 			inverseJoinColumns = @JoinColumn(name = "fk_cleaningId"))
 	private Set<Cleaning> cleanings;
