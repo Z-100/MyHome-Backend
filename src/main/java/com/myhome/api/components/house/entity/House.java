@@ -6,6 +6,7 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.member.entity.Member;
 import com.myhome.api.components.recipe.entity.Recipe;
 import com.myhome.api.components.room.entity.Room;
+import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,6 +28,10 @@ public class House {
 
 	@Column(name = "fkAccountId")
 	private Integer fkAccountId;
+
+	@OneToOne(mappedBy = "fkHouseId")
+	@JsonManagedReference
+	private ShoppingList shoppinglist;
 
 	@OneToMany(
 			cascade = {CascadeType.ALL},

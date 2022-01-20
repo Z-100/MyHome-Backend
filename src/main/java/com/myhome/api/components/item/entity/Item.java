@@ -1,5 +1,8 @@
 package com.myhome.api.components.item.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myhome.api.components.account.entity.Account;
+import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;

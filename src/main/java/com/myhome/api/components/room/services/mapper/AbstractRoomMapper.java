@@ -4,9 +4,9 @@ import com.myhome.api.components.room.dto.RoomDTO;
 import com.myhome.api.components.room.entity.Room;
 import org.mapstruct.Mapper;
 
-@Mapper(implementationName = "ItemMapper",
+@Mapper(implementationName = "RoomMapper",
 		componentModel = "spring")
-public abstract class AbstractItemMapper {
+public abstract class AbstractRoomMapper {
 
 	abstract public RoomDTO toDTO(Room entity);
 

@@ -1,15 +1,10 @@
 package com.myhome.api.components.room.controller;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
-import com.myhome.api.components.house.dto.HouseDTO;
 import com.myhome.api.components.house.repository.IHouseRepository;
-import com.myhome.api.components.house.services.mapper.AbstractHouseMapper;
-
-import com.myhome.api.components.room.repository.IItemRepository;
-
+import com.myhome.api.components.item.mapper.AbstractItemMapper;
 import com.myhome.api.components.room.dto.RoomDTO;
-import com.myhome.api.components.room.entity.Room;
-import com.myhome.api.components.room.repository.IRoomRepository;
+import com.myhome.api.components.room.repository.IItemRepository;
 import com.myhome.api.components.room.services.mapper.AbstractRoomMapper;
 import com.myhome.service.validation.TokenValidationService;
 import lombok.AllArgsConstructor;
@@ -34,6 +29,7 @@ public class RoomController {
 	private final IItemRepository roomRepository;
 
 	private final AbstractRoomMapper roomMapper;
+
 
 	private final TokenValidationService tokenValidation;
 
