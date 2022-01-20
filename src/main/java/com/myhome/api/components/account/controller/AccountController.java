@@ -38,11 +38,11 @@ public class AccountController {
 	}
 
 	@GetMapping("/getAcc")
-	public AccountDTO helloWorld(@RequestHeader("account") String token) {
+	public Account helloWorld(@RequestHeader("account") String token) {
 
 		Account account = accountRepository.findByEmail(token);
 
-		return accountMapper.toDTO(account);
+		return (account);
 	}
 
 	@GetMapping("/login")

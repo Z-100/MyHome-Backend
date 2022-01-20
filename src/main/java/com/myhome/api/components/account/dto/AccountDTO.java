@@ -9,7 +9,7 @@ import java.util.Set;
 @Data
 public class AccountDTO {
 
-	private Long id;
+	private Integer id;
 
 	private String email;
 

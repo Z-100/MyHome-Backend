@@ -1,10 +1,17 @@
 package com.myhome.api.components.house.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myhome.api.components.account.entity.Account;
+import com.myhome.api.components.member.entity.Member;
+import com.myhome.api.components.recipe.entity.Recipe;
 import com.myhome.api.components.room.entity.Room;
+import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "house")
 @Entity
@@ -19,14 +26,24 @@ public class House {
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "fk_houseId")
+	@Column(name = "fkAccountId")
+	private Integer fkAccountId;
+
+	@OneToOne(mappedBy = "fkHouseId")
+	@JsonManagedReference
+	private ShoppingList shoppinglist;
+
+	@OneToMany(
+			cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "fkHouseId")
+	@JsonBackReference
 	private List<Room> rooms;
 
-	public House(String name) {
-		this.name = name;
-	}
-
-	public House() {
-	}
+	@OneToMany(
+			cascade = {CascadeType.ALL},
+			orphanRemoval = true,
+			mappedBy = "fkHouseId")
+	@JsonBackReference
+	private Set<Recipe> recipes;
 }

@@ -2,13 +2,17 @@ package com.myhome.api.components.rating.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myhome.api.components.member.entity.Member;
+import com.myhome.api.components.recipe.entity.Recipe;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Table(name = "rating")
 @Entity
-@Data
+@Getter
+@Setter
 public class Rating {
 
 	@Id
@@ -27,5 +31,5 @@ public class Rating {
 	@ManyToOne
 	@JoinColumn(name = "fkRecipeId", nullable = false)
 	@JsonManagedReference
-	private Member fkRecipeId;
+	private Recipe fkRecipeId;
 }
