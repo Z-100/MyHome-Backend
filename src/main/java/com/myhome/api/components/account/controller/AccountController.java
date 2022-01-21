@@ -5,6 +5,7 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
+import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.service.generate.UserRegistrationService;
 import com.myhome.service.validation.PasswordValidationService;
 import com.myhome.service.validation.TokenValidationService;
@@ -63,9 +64,13 @@ public class AccountController {
 			@RequestHeader("defaultMemberName") String defaultMemberName,
 			@RequestHeader("token") String token) {
 
-		if (token.equals("ma-ta este super dracu, blyat"))
-			return userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName);
-		else
-			return null;
+		if (token.equals("ma-ta este super dracu, blyat")) {
+			try {
+				return userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName);
+			} catch (SaveToDatabaseException e) {
+				return e.getMessage();
+			}
+		}
+		return null;
 	}
 }
