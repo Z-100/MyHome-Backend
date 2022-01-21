@@ -1,5 +1,6 @@
 package com.myhome.service.generate;
 
+import com.myhome.other.exception.TokenGenerationException;
 import com.myhome.service.stupidity.TokenGenerationHelperService;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +19,7 @@ public class TokenGenerationService {
 	 * because Java also likes boobies)
 	 * @return boobies + UUID
 	 */
-	public String createNewToken() {
-
+	public String createNewToken() throws TokenGenerationException {
 		String uuid = UUID.randomUUID().toString();
 
 		String[] parts = uuid.split("-", 3);
@@ -27,6 +27,11 @@ public class TokenGenerationService {
 		String specialSecretTokenIngredient =
 				TokenGenerationHelperService.generateSpecialSecretTokenIngredient();
 
-		return String.format("%s%s%s", parts[0], specialSecretTokenIngredient, parts[2]);
+		String token = String.format("%s%s%s", parts[0], specialSecretTokenIngredient, parts[2]);
+
+		if (token.length() == 39)
+			return token;
+
+		throw new TokenGenerationException("ERROR CREATING TOKEN: Length does not match required 39 chars");
 	}
 }
