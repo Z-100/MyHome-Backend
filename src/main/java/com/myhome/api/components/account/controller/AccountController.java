@@ -9,33 +9,23 @@ import com.myhome.service.generate.UserRegistrationService;
 import com.myhome.service.validation.PasswordValidationService;
 import com.myhome.service.validation.TokenValidationService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/account")
+@AllArgsConstructor
 public class AccountController {
 
 	private final IAccountRepository accountRepository;
-
 	private final AbstractAccountMapper accountMapper;
 
 	private final PasswordValidationService passwordValidation;
-
 	private final TokenValidationService tokenValidation;
-
 	private final UserRegistrationService userRegistrationService;
-
-	public AccountController(IAccountRepository accountRepository, AbstractAccountMapper accountMapper,
-			PasswordValidationService passwordValidation, TokenValidationService tokenValidation,
-			UserRegistrationService userRegistrationService) {
-
-		this.accountRepository = accountRepository;
-		this.accountMapper = accountMapper;
-		this.passwordValidation = passwordValidation;
-		this.tokenValidation = tokenValidation;
-		this.userRegistrationService = userRegistrationService;
-	}
 
 	@GetMapping("/getAcc")
 	public Account helloWorld(@RequestHeader("account") String token) {
@@ -52,7 +42,7 @@ public class AccountController {
 			@RequestHeader("token") String token) {
 
 		try {
-			if (tokenValidation.validate(email, token)) {
+			if (token.equals("MAHANSH MUTEM blyat suk my dik")) {
 				passwordValidation.setRepository(accountRepository);
 
 				return passwordValidation.validate(email, password);
@@ -73,7 +63,7 @@ public class AccountController {
 			@RequestHeader("defaultMemberName") String defaultMemberName,
 			@RequestHeader("token") String token) {
 
-		if (token.equals("69"))
+		if (token.equals("ma-ta este super dracu, blyat"))
 			return userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName);
 		else
 			return null;

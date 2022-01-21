@@ -8,6 +8,8 @@ import com.myhome.api.components.recipe.entity.Recipe;
 import com.myhome.api.components.room.entity.Room;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,7 +17,8 @@ import java.util.Set;
 
 @Table(name = "house")
 @Entity
-@Data
+@Setter
+@Getter
 public class House {
 
 	@Id
@@ -26,8 +29,10 @@ public class House {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "fkAccountId")
-	private Integer fkAccountId;
+	@ManyToOne
+	@JoinColumn(name = "fkAccountId")
+	@JsonManagedReference
+	private Account fkAccountId;
 
 	@OneToOne(mappedBy = "fkHouseId")
 	@JsonManagedReference
