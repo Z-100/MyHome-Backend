@@ -1,5 +1,6 @@
 package com.myhome.service.generate;
 
+import com.myhome.other.exception.TokenGenerationException;
 import com.myhome.service.stupidity.TokenGenerationHelperService;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,9 @@ class TokenGenerationServiceTest {
 
 	TokenGenerationService tgs = new TokenGenerationService();
 	String newToken = tgs.createNewToken();
+
+	TokenGenerationServiceTest() throws TokenGenerationException {
+	}
 
 	@Test
 	void tokenHasTheCorrectLength() {
