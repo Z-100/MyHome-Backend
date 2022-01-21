@@ -1,12 +1,10 @@
 package com.myhome.api.components.member.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.meal.entity.Meal;
 import com.myhome.api.components.rating.entity.Rating;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,7 +29,7 @@ public class Member {
 	private Integer icon;
 
 	@ManyToOne
-	@JoinColumn(name = "fkAccountId", nullable = false)
+	@JoinColumn(name = "fkAccountId")
 	@JsonManagedReference
 	private Account fkAccountId;
 

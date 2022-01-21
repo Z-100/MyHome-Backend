@@ -7,19 +7,20 @@ import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.member.entity.Member;
 import com.myhome.api.components.member.repository.IMemberRepository;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
+import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 /**
  * @author z-100
  * Class used for the entire registration process
- * (Might need changes in the future)
  */
 @Component
 @EnableTransactionManagement
@@ -27,8 +28,7 @@ import java.util.Set;
 public class UserRegistrationService {
 
 	private final IAccountRepository accountRepository;
-	private final IHouseRepository houseRepository;
-	private final IMemberRepository memberRepository;
+	private final IShoppingListRepository shoppingRepository;
 
 	private final TokenGenerationService tokenGenerator;
 
@@ -52,10 +52,19 @@ public class UserRegistrationService {
 
 			if (createNewTransaction(newAccount, newHouseName, defaultMemberName))
 				return token;
+		} else {
+			return "Email already taken";
 		}
-		return null;
+		return "Something went wrong, please try again";
 	}
 
+	/**
+	 * Method used to check if the entered email already
+	 * is taken
+	 *
+	 * @param email the entered email
+	 * @return false if email not taken yet
+	 */
 	private boolean emailAlreadyRegistered(String email) {
 		return accountRepository.findByEmail(email) != null;
 	}
@@ -84,19 +93,24 @@ public class UserRegistrationService {
 	 * @return True if successful
 	 */
 	private boolean saveAccountToDatabase(Account newAccount, String newHouseName, String defaultMemberName) {
+		House house = new House();
 
-		House newHouse = new House();
-		Member newMember = new Member();
 		ShoppingList shoppinglist = new ShoppingList();
+		shoppinglist.setFkHouseId(house);
+		shoppingRepository.save(shoppinglist);
+		shoppinglist.setDate(new Date());
 
-		newHouse.setName(newHouseName);
-		newHouse.setShoppinglist(shoppinglist);
+		house.setName(newHouseName);
+		house.setShoppinglist(shoppinglist);
+		house.setFkAccountId(newAccount);
 
-		newMember.setName(defaultMemberName);
-		newMember.setIcon(0);
+		Member defaultMember = new Member();
+		defaultMember.setName(defaultMemberName);
+		defaultMember.setIcon(1);
+		defaultMember.setFkAccountId(newAccount);
 
-		newAccount.setHouses(List.of(newHouse));
-		newAccount.setMembers(Set.of(newMember));
+		newAccount.setHouses(List.of(house));
+		newAccount.setMembers(Set.of(defaultMember));
 
 		accountRepository.save(newAccount);
 

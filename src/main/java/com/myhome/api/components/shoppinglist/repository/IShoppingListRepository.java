@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IShoppingListRepository extends CrudRepository<ShoppingList, Long> {
-//	House findByAccount(Account account);
 }

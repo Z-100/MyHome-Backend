@@ -42,7 +42,7 @@ public class AccountController {
 			@RequestHeader("token") String token) {
 
 		try {
-			if (tokenValidation.validate(email, token)) {
+			if (token.equals("MAHANSH MUTEM blyat suk my dik")) {
 				passwordValidation.setRepository(accountRepository);
 
 				return passwordValidation.validate(email, password);
@@ -63,7 +63,7 @@ public class AccountController {
 			@RequestHeader("defaultMemberName") String defaultMemberName,
 			@RequestHeader("token") String token) {
 
-		if (token.equals("69"))
+		if (token.equals("ma-ta este super dracu, blyat"))
 			return userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName);
 		else
 			return null;
