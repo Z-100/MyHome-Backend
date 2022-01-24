@@ -1,13 +1,11 @@
 package com.myhome.api.components.account.controller;
 
-import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
-import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
 import com.myhome.other.exception.SaveToDatabaseException;
+import com.myhome.other.replacement.Token;
 import com.myhome.service.crud.account.UserRegistrationService;
 import com.myhome.service.validation.PasswordValidationService;
-import com.myhome.service.validation.TokenValidationService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,28 +13,30 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author z-100
+ * Class used to communicate between API and backend
+ */
 @RestController
 @RequestMapping("/account")
 @AllArgsConstructor
 public class AccountController {
 
 	private final IAccountRepository accountRepository;
-	private final AbstractAccountMapper accountMapper;
 
 	private final PasswordValidationService passwordValidation;
-	private final TokenValidationService tokenValidation;
 	private final UserRegistrationService userRegistrationService;
 
-	@GetMapping("/getAcc")
-	public Account helloWorld(@RequestHeader("account") String token) {
-
-		Account account = accountRepository.findByEmail(token);
-
-		return (account);
-	}
-
+	/**
+	 * Method used to send login information to backend
+	 *
+	 * @param email The accounts email
+	 * @param password The accounts password
+	 * @param token The hardcoded token
+	 * @return The generated token
+	 */
 	@GetMapping("/login")
-	public String login(
+	public Token login(
 			@RequestHeader("email") String email,
 			@RequestHeader("password") String password,
 			@RequestHeader("token") String token) {
@@ -45,18 +45,28 @@ public class AccountController {
 			if (token.equals("MAHANSH MUTEM blyat suk my dik")) {
 				passwordValidation.setRepository(accountRepository);
 
-				return passwordValidation.validate(email, password);
+				return new Token(passwordValidation.validate(email, password));
 			} else {
 				throw new InvalidUserInformationException("Invalid token");
 			}
 		} catch (InvalidUserInformationException e) {
 			e.printStackTrace();
-			return null;
+			return new Token(e.getMessage());
 		}
 	}
 
+	/**
+	 * Method used to send register information to the register service
+	 *
+	 * @param email The to be registered accounts email
+	 * @param password The to be registered accounts password
+	 * @param newHouseName The to be registered accounts house name
+	 * @param defaultMemberName The to be registered accounts member name
+	 * @param token The hardcoded token
+	 * @return The generated token on success
+	 */
 	@GetMapping("/register")
-	public String register(
+	public Token register(
 			@RequestHeader("email") String email,
 			@RequestHeader("password") String password,
 			@RequestHeader("newHouseName") String newHouseName,
@@ -65,9 +75,9 @@ public class AccountController {
 
 		if (token.equals("ma-ta este super dracu, blyat")) {
 			try {
-				return userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName);
+				return new Token(userRegistrationService.registerNewUser(email, password, newHouseName, defaultMemberName));
 			} catch (SaveToDatabaseException e) {
-				return e.getMessage();
+				return new Token(e.getMessage());
 			}
 		}
 		return null;
