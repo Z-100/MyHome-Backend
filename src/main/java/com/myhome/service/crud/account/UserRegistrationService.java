@@ -1,4 +1,4 @@
-package com.myhome.service.generate;
+package com.myhome.service.crud.account;
 
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
@@ -8,6 +8,9 @@ import com.myhome.api.components.member.entity.Member;
 import com.myhome.api.components.member.repository.IMemberRepository;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
+import com.myhome.other.exception.SaveToDatabaseException;
+import com.myhome.other.exception.TokenGenerationException;
+import com.myhome.service.generate.TokenGenerationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -40,10 +43,16 @@ public class UserRegistrationService {
 	 * @param password The given password the user has created
 	 * @return On success: The token used by the account
 	 */
-	public String registerNewUser(String email, String password, String newHouseName, String defaultMemberName) {
+	public String registerNewUser(String email, String password, String newHouseName, String defaultMemberName)
+			throws SaveToDatabaseException {
 
 		if (!emailAlreadyRegistered(email)) {
-			String token = tokenGenerator.createNewToken();
+			String token = null;
+			try {
+				token = tokenGenerator.createNewToken();
+			} catch (TokenGenerationException e) {
+				e.printStackTrace();
+			}
 
 			Account newAccount = new Account();
 			newAccount.setEmail(email);
@@ -53,7 +62,7 @@ public class UserRegistrationService {
 			if (createNewTransaction(newAccount, newHouseName, defaultMemberName))
 				return token;
 		} else {
-			return "Email already taken";
+			throw new SaveToDatabaseException("Email already taken!");
 		}
 		return "Something went wrong, please try again";
 	}
@@ -77,7 +86,7 @@ public class UserRegistrationService {
 	 * @return True if successful, aka. no rollback was needed
 	 */
 	@Transactional
-	boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
+	public boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
 		if (saveAccountToDatabase(newAccount, newHouseName, defaultMemberName)) {
 			return true;
 		} else {
