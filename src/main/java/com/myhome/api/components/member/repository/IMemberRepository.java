@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface IMemberRepository extends CrudRepository<Member, Long> {
 
 	Iterable<Member> findByFkAccountId(Account account);
+
+	Member findMemberById(Long id);
 }
