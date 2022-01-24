@@ -49,7 +49,7 @@ public class RoomController {
 			List<RoomDTO> rooms = new ArrayList<>();
 
 			houseRepository.findHouseByFkAccountId(
-					accountRepository.findByEmail(email).getId()).getRooms()
+					accountRepository.findByEmail(email)).getRooms()
 					.forEach(room -> rooms.add(roomMapper.toDTO(room)));
 
 			return rooms;

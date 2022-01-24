@@ -49,8 +49,7 @@ public class RecipeController {
 				List<RecipeDTO> recipeDTOs = new ArrayList<>();
 
 				houseRepository.findHouseByFkAccountId(
-						accountRepository.findByEmail(email)
-								.getId()).getRecipes().forEach(recipe ->
+						accountRepository.findByEmail(email)).getRecipes().forEach(recipe ->
 						recipeDTOs.add(recipeMapper.toDTO(recipe)));
 
 				return recipeDTOs;

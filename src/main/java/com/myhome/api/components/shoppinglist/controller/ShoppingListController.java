@@ -31,13 +31,9 @@ public class ShoppingListController {
 			@RequestHeader("token") String token) {
 
 		if (tokenValidation.validate(email, token)) {
-			return
-					houseRepository.findHouseByFkAccountId(accountRepository.findByEmail(email).getId()).getShoppinglist();
+			return houseRepository.findHouseByFkAccountId(
+					accountRepository.findByEmail(email)).getShoppinglist();
 		}
 		return null;
 	}
-
-//	@GetMapping("update-shopping-list")
-
-
 }
