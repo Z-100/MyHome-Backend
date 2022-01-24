@@ -80,7 +80,7 @@ public class MemberController {
 			@RequestHeader("token") String token,
 			@RequestHeader("member-id") String memberId) {
 
-		return tokenValidation.validate(email, token) && deleteMember.delete(email, Long.parseLong(memberId)) ?
+		return tokenValidation.validate(email, token) && deleteMember.delete(Long.parseLong(memberId)) ?
 				new JsonBoolean(true) : new JsonBoolean(false);
 	}
 

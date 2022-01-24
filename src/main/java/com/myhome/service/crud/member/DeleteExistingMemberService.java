@@ -27,17 +27,18 @@ public class DeleteExistingMemberService {
 	 * @param memberId The members id
 	 * @return True on success
 	 */
-	public boolean delete(String email, Long memberId) {
+	public boolean delete(Long memberId) {
 
 		Member member = memberRepository.findMemberById(memberId);
-		member.setFkAccountId(null);
-		member.setMeals(null);
-		member.setRatings(null);
 
-		Account account = accountRepository.findByEmail(email);
-		account.getMembers().remove(member);
+		if (member != null) {
+			member.setFkAccountId(null);
+			member.setMeals(null);
+			member.setRatings(null);
 
-		return createNewTransaction(account, member);
+			return createNewTransaction(member);
+		}
+		return false;
 	}
 
 	/**
@@ -48,8 +49,8 @@ public class DeleteExistingMemberService {
 	 * @param member To be deleted member
 	 */
 	@Transactional
-	boolean createNewTransaction(Account account, Member member) {
-		if (deleteMember(account, member)) {
+	boolean createNewTransaction(Member member) {
+		if (deleteMember(member)) {
 			return true;
 		} else {
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
@@ -64,10 +65,7 @@ public class DeleteExistingMemberService {
 	 * @param member The to be deleted member
 	 * @return True on success
 	 */
-	public boolean deleteMember(Account account, Member member) {
-		accountRepository.save(account);
-
-		memberRepository.save(member);
+	public boolean deleteMember(Member member) {
 		memberRepository.delete(member);
 
 		return memberDeletedCorrectly(member);
