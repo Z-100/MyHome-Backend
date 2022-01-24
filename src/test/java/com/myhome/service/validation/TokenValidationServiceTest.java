@@ -10,20 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class PasswordValidationServiceTest {
+class TokenValidationServiceTest {
 
 	@Mock
-	PasswordValidationService pwVal;
+	TokenValidationService tokenVal;
 
 	@SneakyThrows
 	@Test
 	void canValidateCorrectInformation() {
-		when(pwVal.validate("sas", "sus"))
-				.thenReturn("Gimme a good grade :)");
+		when(tokenVal.validate("Da teacher has to give", "us a good grade"))
+				.thenReturn(true);
 
-		assertAll(
-				() -> assertEquals("Gimme a good grade :)", pwVal.validate("sas", "sus")),
-				() -> assertNotEquals("Gimme a good grade :)", pwVal.validate("", ""))
-		);
+		assertTrue(tokenVal.validate("Da teacher has to give", "us a good grade"));
+		assertFalse(tokenVal.validate("He will give us", "a bad grade"));
 	}
 }
