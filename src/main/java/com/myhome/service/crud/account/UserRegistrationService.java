@@ -1,4 +1,4 @@
-package com.myhome.service.generate;
+package com.myhome.service.crud.account;
 
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
@@ -10,6 +10,7 @@ import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
 import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.other.exception.TokenGenerationException;
+import com.myhome.service.generate.TokenGenerationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -85,7 +86,7 @@ public class UserRegistrationService {
 	 * @return True if successful, aka. no rollback was needed
 	 */
 	@Transactional
-	boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
+	public boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
 		if (saveAccountToDatabase(newAccount, newHouseName, defaultMemberName)) {
 			return true;
 		} else {
