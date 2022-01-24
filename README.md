@@ -50,7 +50,11 @@ All around, MyHome is a school project consisting of two standalone project:
       * Required headers:
         * email, token
 * ### How to update the database
-  * wtf how should I manage to do this?
+  * Currently (as for the school project) You can only edit, delete or insert new members via:
+  * /member
+    * /delete-member
+    * /update-member
+    * /insert-member
 
 ### School information
 * All the diagrams, sketches and the documentation can be found in this [repository](https:github.com/Z-100/MyHome)
