@@ -1,4 +1,4 @@
-package com.myhome.api.components.shoppinglist.mapper;
+package com.myhome.api.components.shoppinglist.services.mapper;
 
 import com.myhome.api.components.shoppinglist.dto.ShoppingListDTO;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;

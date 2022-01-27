@@ -5,9 +5,9 @@ import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.member.repository.IMemberRepository;
 import com.myhome.api.components.rating.repository.IRatingRepository;
 import com.myhome.api.components.recipe.dto.RecipeDTO;
-import com.myhome.api.components.recipe.mapper.AbstractRecipeMapper;
+import com.myhome.api.components.recipe.services.mapper.AbstractRecipeMapper;
 import com.myhome.api.components.recipe.repository.IRecipeRepository;
-import com.myhome.service.validation.TokenValidationService;
+import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

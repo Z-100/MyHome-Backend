@@ -2,11 +2,10 @@ package com.myhome.api.components.room.controller;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.repository.IHouseRepository;
-import com.myhome.api.components.item.mapper.AbstractItemMapper;
 import com.myhome.api.components.room.dto.RoomDTO;
 import com.myhome.api.components.room.repository.IItemRepository;
 import com.myhome.api.components.room.services.mapper.AbstractRoomMapper;
-import com.myhome.service.validation.TokenValidationService;
+import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

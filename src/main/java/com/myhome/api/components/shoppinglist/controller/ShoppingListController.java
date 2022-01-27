@@ -2,11 +2,10 @@ package com.myhome.api.components.shoppinglist.controller;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.repository.IHouseRepository;
-import com.myhome.api.components.shoppinglist.dto.ShoppingListDTO;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
-import com.myhome.api.components.shoppinglist.mapper.AbstractShoppingListMapper;
+import com.myhome.api.components.shoppinglist.services.mapper.AbstractShoppingListMapper;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
-import com.myhome.service.validation.TokenValidationService;
+import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

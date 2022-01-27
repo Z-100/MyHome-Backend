@@ -1,7 +1,8 @@
 package com.myhome.service.generate;
 
 import com.myhome.other.exception.TokenGenerationException;
-import com.myhome.service.stupidity.TokenGenerationHelperService;
+import com.myhome.service.generate.impl.TokenGenerationService;
+import com.myhome.service.stupidity.impl.TokenGenerationHelperService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,6 +1,5 @@
-package com.myhome.service.crud.member;
+package com.myhome.api.services.crud.member;
 
-import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.member.entity.Member;
 import com.myhome.api.components.member.repository.IMemberRepository;

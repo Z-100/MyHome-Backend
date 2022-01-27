@@ -1,4 +1,4 @@
-package com.myhome.service.stupidity;
+package com.myhome.service.stupidity.impl;
 
 /**
  * @author z-100

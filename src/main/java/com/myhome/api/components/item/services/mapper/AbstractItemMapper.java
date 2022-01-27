@@ -1,4 +1,4 @@
-package com.myhome.api.components.item.mapper;
+package com.myhome.api.components.item.services.mapper;
 
 import com.myhome.api.components.item.dto.ItemDTO;
 import com.myhome.api.components.item.entity.Item;

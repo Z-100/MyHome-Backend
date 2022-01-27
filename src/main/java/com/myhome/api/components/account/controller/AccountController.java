@@ -4,8 +4,8 @@ import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.other.exception.InvalidUserInformationException;
 import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.other.replacement.Token;
-import com.myhome.service.crud.account.UserRegistrationService;
-import com.myhome.service.validation.PasswordValidationService;
+import com.myhome.api.services.crud.account.UserRegistrationService;
+import com.myhome.service.validation.impl.PasswordValidationService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
