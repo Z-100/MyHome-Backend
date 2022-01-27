@@ -5,7 +5,7 @@ import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.room.dto.RoomDTO;
 import com.myhome.api.components.room.repository.IItemRepository;
 import com.myhome.api.components.room.services.mapper.AbstractRoomMapper;
-import com.myhome.service.validation.impl.TokenValidationService;
+import com.myhome.service.validation.ITokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -30,7 +30,7 @@ public class RoomController {
 	private final AbstractRoomMapper roomMapper;
 
 
-	private final TokenValidationService tokenValidation;
+	private final ITokenValidationService tokenValidation;
 
 	/**
 	 * Method used to gather all rooms belonging to an account

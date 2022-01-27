@@ -5,7 +5,7 @@ import com.myhome.other.exception.InvalidUserInformationException;
 import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.other.replacement.Token;
 import com.myhome.api.services.crud.account.UserRegistrationService;
-import com.myhome.service.validation.impl.PasswordValidationService;
+import com.myhome.service.validation.IPasswordValidationService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,7 @@ public class AccountController {
 
 	private final IAccountRepository accountRepository;
 
-	private final PasswordValidationService passwordValidation;
+	private final IPasswordValidationService passwordValidation;
 	private final UserRegistrationService userRegistrationService;
 
 	/**
@@ -43,8 +43,6 @@ public class AccountController {
 
 		try {
 			if (token.equals("MAHANSH MUTEM blyat suk my dik")) {
-				passwordValidation.setRepository(accountRepository);
-
 				return new Token(passwordValidation.validate(email, password));
 			} else {
 				throw new InvalidUserInformationException("Invalid token");

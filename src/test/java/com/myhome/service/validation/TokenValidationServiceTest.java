@@ -1,6 +1,5 @@
 package com.myhome.service.validation;
 
-import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +13,7 @@ import static org.mockito.Mockito.when;
 class TokenValidationServiceTest {
 
 	@Mock
-	TokenValidationService tokenVal;
+	ITokenValidationService tokenVal;
 
 	@SneakyThrows
 	@Test

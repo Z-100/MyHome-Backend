@@ -6,7 +6,7 @@ import com.myhome.api.services.crud.member.DeleteExistingMemberService;
 import com.myhome.api.services.crud.member.InsertNewMemberService;
 import com.myhome.api.services.crud.member.ReadExistingMemberService;
 import com.myhome.api.services.crud.member.UpdateExistingMemberService;
-import com.myhome.service.validation.impl.TokenValidationService;
+import com.myhome.service.validation.ITokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class MemberController {
 
-	private final TokenValidationService tokenValidation;
+	private final ITokenValidationService tokenValidation;
 
 	private final ReadExistingMemberService readMember;
 	private final InsertNewMemberService insertMember;

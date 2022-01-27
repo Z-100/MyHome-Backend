@@ -1,7 +1,8 @@
 package com.myhome.service.generate.impl;
 
 import com.myhome.other.exception.TokenGenerationException;
-import com.myhome.service.stupidity.impl.TokenGenerationHelperService;
+import com.myhome.service.generate.ITokenGenerationService;
+import com.myhome.service.stupidity.ITokenGenerationHelperService;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -11,7 +12,7 @@ import java.util.UUID;
  * Service used to create a 37c long token, up on account registration
  */
 @Component
-public class TokenGenerationService {
+public class TokenGenerationService implements ITokenGenerationService {
 
 	/**
 	 * Method used to generate token for user validation
@@ -25,7 +26,7 @@ public class TokenGenerationService {
 		String[] parts = uuid.split("-", 3);
 
 		String specialSecretTokenIngredient =
-				TokenGenerationHelperService.generateSpecialSecretTokenIngredient();
+				ITokenGenerationHelperService.generateSpecialSecretTokenIngredient();
 
 		String token = String.format("%s%s%s", parts[0], specialSecretTokenIngredient, parts[2]);
 

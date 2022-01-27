@@ -1,19 +1,7 @@
-package com.myhome.service.stupidity.impl;
+package com.myhome.service.stupidity;
 
-import com.myhome.service.stupidity.ITokenGenerationHelperService;
+public interface ITokenGenerationHelperService {
 
-/**
- * @author z-100
- * Class used to generate a safe "token-password"
- * Some may say this is very unnecessary. And indeed it is.
- * But I was bored, so I did this.
- */
-public class TokenGenerationHelperService implements ITokenGenerationHelperService {
-
-	/**
-	 * Please ignore this nonsense
-	 * @return Combine the letters of the methods to a word
-	 */
 	public static String generateSpecialSecretTokenIngredient() {
 
 		byte[] specialSecretTokenIngredientArray = new byte[9];

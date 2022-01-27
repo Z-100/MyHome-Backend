@@ -14,7 +14,7 @@ import static org.mockito.Mockito.when;
 class PasswordValidationServiceTest {
 
 	@Mock
-	PasswordValidationService pwVal;
+	IPasswordValidationService pwVal;
 
 	@SneakyThrows
 	@Test
