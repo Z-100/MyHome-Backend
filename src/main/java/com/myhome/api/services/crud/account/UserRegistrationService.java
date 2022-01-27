@@ -1,16 +1,14 @@
-package com.myhome.service.crud.account;
+package com.myhome.api.services.crud.account;
 
 import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.house.entity.House;
-import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.member.entity.Member;
-import com.myhome.api.components.member.repository.IMemberRepository;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
 import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.other.exception.TokenGenerationException;
-import com.myhome.service.generate.TokenGenerationService;
+import com.myhome.service.generate.impl.TokenGenerationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;

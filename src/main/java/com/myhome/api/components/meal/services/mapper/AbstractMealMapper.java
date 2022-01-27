@@ -1,4 +1,4 @@
-package com.myhome.api.components.meal.mapper;
+package com.myhome.api.components.meal.services.mapper;
 
 import com.myhome.api.components.meal.dto.MealDTO;
 import com.myhome.api.components.meal.entity.Meal;

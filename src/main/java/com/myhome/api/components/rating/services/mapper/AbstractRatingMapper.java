@@ -1,4 +1,4 @@
-package com.myhome.api.components.rating.mapper;
+package com.myhome.api.components.rating.services.mapper;
 
 import com.myhome.api.components.rating.dto.RatingDTO;
 import com.myhome.api.components.rating.entity.Rating;

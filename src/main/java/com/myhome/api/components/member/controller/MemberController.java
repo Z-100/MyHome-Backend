@@ -2,11 +2,11 @@ package com.myhome.api.components.member.controller;
 
 import com.myhome.api.components.member.dto.MemberDTO;
 import com.myhome.other.replacement.JsonBoolean;
-import com.myhome.service.crud.member.DeleteExistingMemberService;
-import com.myhome.service.crud.member.InsertNewMemberService;
-import com.myhome.service.crud.member.ReadExistingMemberService;
-import com.myhome.service.crud.member.UpdateExistingMemberService;
-import com.myhome.service.validation.TokenValidationService;
+import com.myhome.api.services.crud.member.DeleteExistingMemberService;
+import com.myhome.api.services.crud.member.InsertNewMemberService;
+import com.myhome.api.services.crud.member.ReadExistingMemberService;
+import com.myhome.api.services.crud.member.UpdateExistingMemberService;
+import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;

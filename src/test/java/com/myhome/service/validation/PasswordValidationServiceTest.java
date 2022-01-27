@@ -1,5 +1,6 @@
 package com.myhome.service.validation;
 
+import com.myhome.service.validation.impl.PasswordValidationService;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

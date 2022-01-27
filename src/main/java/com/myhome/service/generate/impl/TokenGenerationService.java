@@ -1,7 +1,7 @@
-package com.myhome.service.generate;
+package com.myhome.service.generate.impl;
 
 import com.myhome.other.exception.TokenGenerationException;
-import com.myhome.service.stupidity.TokenGenerationHelperService;
+import com.myhome.service.stupidity.impl.TokenGenerationHelperService;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;

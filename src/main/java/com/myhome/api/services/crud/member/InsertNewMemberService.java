@@ -1,4 +1,4 @@
-package com.myhome.service.crud.member;
+package com.myhome.api.services.crud.member;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.member.entity.Member;

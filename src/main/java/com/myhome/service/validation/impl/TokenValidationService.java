@@ -1,4 +1,4 @@
-package com.myhome.service.validation;
+package com.myhome.service.validation.impl;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
 import org.springframework.stereotype.Component;

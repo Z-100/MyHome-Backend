@@ -1,12 +1,10 @@
 package com.myhome.api.components.meal.controller;
 
 import com.myhome.api.components.meal.dto.MealDTO;
-import com.myhome.api.components.meal.mapper.AbstractMealMapper;
+import com.myhome.api.components.meal.services.mapper.AbstractMealMapper;
 import com.myhome.api.components.meal.repository.IMealRepository;
-import com.myhome.api.components.member.dto.MemberDTO;
 import com.myhome.api.components.member.repository.IMemberRepository;
-import com.myhome.api.components.member.services.mapper.AbstractMemberMapper;
-import com.myhome.service.validation.TokenValidationService;
+import com.myhome.service.validation.impl.TokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
