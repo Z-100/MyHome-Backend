@@ -1,5 +1,5 @@
 # :house: MyHome
-### Information for tpangri ***Important*** 
+### Information for tpangri ***!Important*** 
 ***All commits after [Release V1.0.0](https://github.com/Z-100/MyHome-Backend/releases/tag/V1.0.0) are in no association to the "School project version", as I want to continue developement on this REST API.***
 <br/>
 ### ***The other repositories***
