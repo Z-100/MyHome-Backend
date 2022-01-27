@@ -1,6 +1,8 @@
 package com.myhome.service.validation.impl;
 
 import com.myhome.api.components.account.repository.IAccountRepository;
+import com.myhome.service.validation.ITokenValidationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
@@ -10,13 +12,10 @@ import java.util.Objects;
  * Class used to validate a given token
  */
 @Component
-public class TokenValidationService {
+@RequiredArgsConstructor
+public class TokenValidationService implements ITokenValidationService {
 
 	private final IAccountRepository repository;
-
-	public TokenValidationService(IAccountRepository repository) {
-		this.repository = repository;
-	}
 
 	/**
 	 * Method used to check if the given token is the same

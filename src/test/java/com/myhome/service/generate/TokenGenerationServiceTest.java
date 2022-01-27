@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TokenGenerationServiceTest {
 
-	TokenGenerationService tgs = new TokenGenerationService();
+	ITokenGenerationService tgs = new TokenGenerationService();
 	String newToken = tgs.createNewToken();
 
 	TokenGenerationServiceTest() throws TokenGenerationException {

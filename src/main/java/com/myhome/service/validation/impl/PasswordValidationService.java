@@ -4,6 +4,7 @@ import com.myhome.api.components.account.entity.Account;
 import com.myhome.api.components.account.repository.IAccountRepository;
 import com.myhome.api.components.account.services.mapper.AbstractAccountMapper;
 import com.myhome.other.exception.InvalidUserInformationException;
+import com.myhome.service.validation.IPasswordValidationService;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,7 @@ import java.util.stream.StreamSupport;
 @Setter
 @Component
 @AllArgsConstructor
-public class PasswordValidationService {
+public class PasswordValidationService implements IPasswordValidationService {
 
 	private IAccountRepository repository;
 

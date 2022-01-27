@@ -5,7 +5,7 @@ import com.myhome.api.components.house.repository.IHouseRepository;
 import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import com.myhome.api.components.shoppinglist.services.mapper.AbstractShoppingListMapper;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
-import com.myhome.service.validation.impl.TokenValidationService;
+import com.myhome.service.validation.ITokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -22,7 +22,7 @@ public class ShoppingListController {
 	private final IShoppingListRepository roomRepository;
 	private final AbstractShoppingListMapper shoppinglistMapper;
 
-	private final TokenValidationService tokenValidation;
+	private final ITokenValidationService tokenValidation;
 
 	@GetMapping("get-shopping-list")
 	public ShoppingList showShoppingList(

@@ -7,7 +7,7 @@ import com.myhome.api.components.rating.repository.IRatingRepository;
 import com.myhome.api.components.recipe.dto.RecipeDTO;
 import com.myhome.api.components.recipe.services.mapper.AbstractRecipeMapper;
 import com.myhome.api.components.recipe.repository.IRecipeRepository;
-import com.myhome.service.validation.impl.TokenValidationService;
+import com.myhome.service.validation.ITokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +31,7 @@ public class RecipeController {
 	private final IMemberRepository memberRepository;
 	private final AbstractRecipeMapper recipeMapper;
 
-	private final TokenValidationService tokenValidation;
+	private final ITokenValidationService tokenValidation;
 
 	/**
 	 * Method used to get all members from database (only members)

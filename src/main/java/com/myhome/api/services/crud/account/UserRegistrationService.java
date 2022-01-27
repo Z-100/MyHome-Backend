@@ -8,7 +8,7 @@ import com.myhome.api.components.shoppinglist.entity.ShoppingList;
 import com.myhome.api.components.shoppinglist.repository.IShoppingListRepository;
 import com.myhome.other.exception.SaveToDatabaseException;
 import com.myhome.other.exception.TokenGenerationException;
-import com.myhome.service.generate.impl.TokenGenerationService;
+import com.myhome.service.generate.ITokenGenerationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -31,7 +31,7 @@ public class UserRegistrationService {
 	private final IAccountRepository accountRepository;
 	private final IShoppingListRepository shoppingRepository;
 
-	private final TokenGenerationService tokenGenerator;
+	private final ITokenGenerationService tokenGenerator;
 
 	/**
 	 * Method used to create a new account

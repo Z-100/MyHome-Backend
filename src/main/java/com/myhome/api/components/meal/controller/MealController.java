@@ -4,7 +4,7 @@ import com.myhome.api.components.meal.dto.MealDTO;
 import com.myhome.api.components.meal.services.mapper.AbstractMealMapper;
 import com.myhome.api.components.meal.repository.IMealRepository;
 import com.myhome.api.components.member.repository.IMemberRepository;
-import com.myhome.service.validation.impl.TokenValidationService;
+import com.myhome.service.validation.ITokenValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -23,7 +23,7 @@ public class MealController {
 	private final IMemberRepository memberRepository;
 	private final AbstractMealMapper mealMapper;
 
-	private final TokenValidationService tokenValidation;
+	private final ITokenValidationService tokenValidation;
 
 	/**
 	 * Method used to get all meals from a specific member
