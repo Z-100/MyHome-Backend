@@ -48,7 +48,7 @@ public class InsertNewMemberService {
 	 * @param newMember The to be saved member
 	 */
 	@Transactional
-	public boolean createNewTransaction(Member newMember) {
+	boolean createNewTransaction(Member newMember) {
 		if (saveMemberToDatabase(newMember)) {
 			return true;
 		} else {
@@ -63,7 +63,7 @@ public class InsertNewMemberService {
 	 * @param newMember The to be saved icon
 	 * @return true on success
 	 */
-	public boolean saveMemberToDatabase(Member newMember) {
+	private boolean saveMemberToDatabase(Member newMember) {
 		memberRepository.save(newMember);
 
 		return memberSavedCorrectly(newMember);
@@ -75,7 +75,7 @@ public class InsertNewMemberService {
 	 * @param newMember The saved member
 	 * @return True on success
 	 */
-	public boolean memberSavedCorrectly(Member newMember) {
+	private boolean memberSavedCorrectly(Member newMember) {
 	 return memberRepository.findById(newMember.getId()).get().getName()
 			 .equals(newMember.getName());
 	}

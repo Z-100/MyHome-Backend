@@ -62,7 +62,7 @@ public class DeleteExistingHouseService {
 	 * @param account The to be deleted account
 	 * @return True on success
 	 */
-	public boolean deleteAccount(Account account) {
+	private boolean deleteAccount(Account account) {
 //		houseRepository.delete(account);
 
 		return accountDeletedCorrectly(account);
@@ -74,7 +74,7 @@ public class DeleteExistingHouseService {
 	 * @param member The deleted member
 	 * @return True on success
 	 */
-	public boolean accountDeletedCorrectly(Account account) {
+	private boolean accountDeletedCorrectly(Account account) {
 //		return houseRepository.findByEmail(account.getEmail()) == null;
 		return false;
 	}

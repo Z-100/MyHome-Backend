@@ -84,7 +84,7 @@ public class UserRegistrationService {
 	 * @return True if successful, aka. no rollback was needed
 	 */
 	@Transactional
-	public boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
+	boolean createNewTransaction(Account newAccount, String newHouseName, String defaultMemberName) {
 		if (saveAccountToDatabase(newAccount, newHouseName, defaultMemberName)) {
 			return true;
 		} else {

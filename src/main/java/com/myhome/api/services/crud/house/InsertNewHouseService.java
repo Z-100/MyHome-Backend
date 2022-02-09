@@ -49,7 +49,7 @@ public class InsertNewHouseService {
 	 * @param newHouse The to be saved house
 	 */
 	@Transactional
-	public boolean createNewTransaction(House newHouse) {
+	boolean createNewTransaction(House newHouse) {
 		if (saveHouseToDatabase(newHouse)) {
 			return true;
 		} else {
@@ -64,7 +64,7 @@ public class InsertNewHouseService {
 	 * @param newHouse The to be saved icon
 	 * @return true on success
 	 */
-	public boolean saveHouseToDatabase(House newHouse) {
+	private boolean saveHouseToDatabase(House newHouse) {
 		houseRepository.save(newHouse);
 
 		return houseSavedCorrectly(newHouse);
@@ -76,7 +76,7 @@ public class InsertNewHouseService {
 	 * @param newHouse The saved member
 	 * @return True on success
 	 */
-	public boolean houseSavedCorrectly(House newHouse) {
+	private boolean houseSavedCorrectly(House newHouse) {
 	 return houseRepository.findById(newHouse.getId()).get().getName()
 			 .equals(newHouse.getName());
 	}

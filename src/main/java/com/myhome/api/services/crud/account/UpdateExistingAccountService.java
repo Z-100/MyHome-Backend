@@ -42,7 +42,7 @@ public class UpdateExistingAccountService {
 	 * @param member The to be updated member
 	 */
 	@Transactional
-	public boolean createNewTransaction(Account account, String email) {
+	boolean createNewTransaction(Account account, String email) {
 		if (saveAccountToDatabase(account, email)) {
 			return true;
 		} else {
@@ -57,7 +57,7 @@ public class UpdateExistingAccountService {
 	 * @param account The to be updated account
 	 * @return true on success
 	 */
-	public boolean saveAccountToDatabase(Account account, String email) {
+	private boolean saveAccountToDatabase(Account account, String email) {
 		accountRepository.save(account);
 
 		return accountUpdatedCorrectly(account, email);
@@ -69,7 +69,7 @@ public class UpdateExistingAccountService {
 	 * @param account The updated account
 	 * @return True on success
 	 */
-	public boolean accountUpdatedCorrectly(Account account, String email) {
+	private boolean accountUpdatedCorrectly(Account account, String email) {
 		return !accountRepository.findByEmail(email).getEmail().equals(email);
 	}
 }
