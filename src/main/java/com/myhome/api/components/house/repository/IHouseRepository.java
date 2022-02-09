@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface IHouseRepository extends CrudRepository<House, Long> {
 
 	House findHouseByFkAccountId(Account fkAccountId);
+
 }
