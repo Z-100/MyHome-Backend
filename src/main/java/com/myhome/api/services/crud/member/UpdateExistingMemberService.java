@@ -42,7 +42,7 @@ public class UpdateExistingMemberService {
 	 * @param member The to be updated member
 	 */
 	@Transactional
-	public boolean createNewTransaction(Member member) {
+	boolean createNewTransaction(Member member) {
 		if (saveMemberToDatabase(member)) {
 			return true;
 		} else {
@@ -57,7 +57,7 @@ public class UpdateExistingMemberService {
 	 * @param member The to be updated member
 	 * @return true on success
 	 */
-	public boolean saveMemberToDatabase(Member member) {
+	private boolean saveMemberToDatabase(Member member) {
 		memberRepository.save(member);
 
 		return memberUpdatedCorrectly(member);
@@ -69,7 +69,7 @@ public class UpdateExistingMemberService {
 	 * @param member The updated member
 	 * @return True on success
 	 */
-	public boolean memberUpdatedCorrectly(Member member) {
+	private boolean memberUpdatedCorrectly(Member member) {
 		return memberRepository.findById(member.getId()).get().getName()
 				.equals(member.getName());
 	}

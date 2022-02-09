@@ -60,7 +60,7 @@ public class DeleteExistingAccountService {
 	 * @param account The to be deleted account
 	 * @return True on success
 	 */
-	public boolean deleteAccount(Account account) {
+	private boolean deleteAccount(Account account) {
 		accountRepository.delete(account);
 
 		return accountDeletedCorrectly(account);
@@ -72,7 +72,7 @@ public class DeleteExistingAccountService {
 	 * @param member The deleted member
 	 * @return True on success
 	 */
-	public boolean accountDeletedCorrectly(Account account) {
+	private boolean accountDeletedCorrectly(Account account) {
 		return accountRepository.findByEmail(account.getEmail()) == null;
 	}
 }

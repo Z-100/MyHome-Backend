@@ -45,7 +45,7 @@ public class UpdateExistingHouseService {
 	 * @param oldName The houses old name
 	 */
 	@Transactional
-	public boolean createNewTransaction(House house, String oldName) {
+	boolean createNewTransaction(House house, String oldName) {
 		if (saveHouseToDatabase(house, oldName)) {
 			return true;
 		} else {
@@ -61,7 +61,7 @@ public class UpdateExistingHouseService {
 	 * @param oldName The houses old name
 	 * @return true on success
 	 */
-	public boolean saveHouseToDatabase(House house, String oldName) {
+	private boolean saveHouseToDatabase(House house, String oldName) {
 		houseRepository.save(house);
 
 		return houseUpdatedCorrectly(house, oldName);
@@ -73,7 +73,7 @@ public class UpdateExistingHouseService {
 	 * @param house The updated house
 	 * @return True on success
 	 */
-	public boolean houseUpdatedCorrectly(House house, String oldName) {
+	private boolean houseUpdatedCorrectly(House house, String oldName) {
 		return !houseRepository.findHouseByFkAccountId(
 				house.getFkAccountId()).getName().equals(oldName);
 	}

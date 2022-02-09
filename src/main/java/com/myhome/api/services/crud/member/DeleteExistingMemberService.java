@@ -64,7 +64,7 @@ public class DeleteExistingMemberService {
 	 * @param member The to be deleted member
 	 * @return True on success
 	 */
-	public boolean deleteMember(Member member) {
+	private boolean deleteMember(Member member) {
 		memberRepository.delete(member);
 
 		return memberDeletedCorrectly(member);
@@ -76,7 +76,7 @@ public class DeleteExistingMemberService {
 	 * @param member The deleted member
 	 * @return True on success
 	 */
-	public boolean memberDeletedCorrectly(Member member) {
+	private boolean memberDeletedCorrectly(Member member) {
 		return memberRepository.findMemberById(member.getId()) == null;
 	}
 }
