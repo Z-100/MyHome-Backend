@@ -1,7 +1,7 @@
 # :house: MyHome
 ### ***The other repositories***
--  [The Android "front-end" application](https://github.com/Z-100/MyHome-Mobile)
 -  [Back to MyHome](https://github.com/Z-100/MyHome)
+-  [The Android Mobile Application](https://github.com/Z-100/MyHome-Mobile)
 
 ## What is MyHome
 All around, MyHome is a school project consisting of two standalone project:
