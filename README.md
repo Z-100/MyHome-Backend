@@ -1,6 +1,6 @@
 # :house: MyHome
 ### ***The other repositories***
--  [The Android "front-end" application](https://github.com/Z-100/MyHome-Android-App)
+-  [The Android "front-end" application](https://github.com/Z-100/MyHome-Mobile)
 -  [Back to MyHome](https://github.com/Z-100/MyHome)
 
 ## What is MyHome
